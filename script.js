@@ -18,7 +18,7 @@ function setCurrency(event){
         rate = data.rates[outputCurrency];
         result.value=input.value*rate;
         if(event.target.parentElement.parentElement.className=="result"){
-        input.nextElementSibling.textContent=`1 ${inputCurrency} = ${(rate)} ${outputCurrency}`;
+        input.nextElementSibling.textContent=`1 ${inputCurrency} = ${(1/rate)} ${outputCurrency}`;
         result.nextElementSibling.textContent=`1 ${outputCurrency} = ${rate} ${inputCurrency}`;
         }
         else {
@@ -45,7 +45,7 @@ function convert(event){
     else if(event.target.parentElement.parentElement.className=="result"){
         input.value=result.value/rate;
         input.nextElementSibling.textContent=`1 ${inputCurrency} = ${(rate).toPrecision(4)} ${outputCurrency}`;
-        result.nextElementSibling.textContent=`1 ${outputCurrency} = ${rate} ${inputCurrency}`;
+        result.nextElementSibling.textContent=`1 ${outputCurrency} = ${1/rate} ${inputCurrency}`;
     }
     }
 sourceCurrency.forEach((currency)=>{
