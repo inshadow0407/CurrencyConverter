@@ -16,7 +16,7 @@ function setCurrency(event){
     outputCurrency = document.querySelector(".result>.currency>.active").textContent;
     request(inputCurrency,outputCurrency).then((data)=>{
         rate = data.rates[outputCurrency];
-        result.value=input.value*rate;
+        result.value=(+(input.value).replace(/\,/g, '.'))*rate;
         if(event.target.parentElement.parentElement.className=="result"){
         input.nextElementSibling.textContent=`1 ${inputCurrency} = ${(1/rate)} ${outputCurrency}`;
         result.nextElementSibling.textContent=`1 ${outputCurrency} = ${rate} ${inputCurrency}`;
@@ -38,12 +38,12 @@ async function request(from, to){
 }
 function convert(event){
     if(event.target.parentElement.parentElement.className=="source"){
-        result.value=input.value*rate;
+        result.value=(+(input.value).replace(/\,/g, '.'))*rate;
         input.nextElementSibling.textContent=`1 ${inputCurrency} = ${rate} ${outputCurrency}`;
         result.nextElementSibling.textContent=`1 ${outputCurrency} = ${(1/rate).toPrecision(4)} ${inputCurrency}`;
     }
     else if(event.target.parentElement.parentElement.className=="result"){
-        input.value=result.value/rate;
+        input.value=(+(result.value.replace(/\,/g, '.')))/rate;
         input.nextElementSibling.textContent=`1 ${inputCurrency} = ${(rate).toPrecision(4)} ${outputCurrency}`;
         result.nextElementSibling.textContent=`1 ${outputCurrency} = ${1/rate} ${inputCurrency}`;
     }
