@@ -156,6 +156,4 @@ input,input:hover,input:focus {
     font-weight: 700;
     border: none;
     outline: 0;
-    appearance: none;
-    -moz-appearance: textfield;
 }
